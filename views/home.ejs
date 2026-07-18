@@ -1,0 +1,29 @@
+<%- include('partials_header') %>
+
+<section class="hero">
+  <div class="container">
+    <h1>Southern Bobby-Q Catering</h1>
+    <p>Slow-smoked, homemade rubs and sauces, served up for your next event.</p>
+    <a href="/contact" class="btn">Request Catering</a>
+  </div>
+</section>
+
+<section class="container">
+  <h2>Upcoming Events</h2>
+  <% if (upcomingEvents.length === 0) { %>
+    <p>No events scheduled right now &mdash; check back soon!</p>
+  <% } else { %>
+    <ul class="event-list">
+      <% upcomingEvents.forEach(function(ev) { %>
+        <li class="event-card">
+          <strong><%= ev.title %></strong>
+          <span><%= new Date(ev.event_date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) %><% if (ev.start_time) { %> &middot; <%= ev.start_time %><% } %></span>
+          <% if (ev.location) { %><span><%= ev.location %></span><% } %>
+        </li>
+      <% }) %>
+    </ul>
+    <p><a href="/events">See all events &rarr;</a></p>
+  <% } %>
+</section>
+
+<%- include('partials_footer') %>

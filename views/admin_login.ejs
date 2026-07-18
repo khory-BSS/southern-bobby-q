@@ -1,0 +1,13 @@
+<%- include('partials_header') %>
+
+<section class="container narrow">
+  <h1>Admin Login</h1>
+  <% if (error) { %><p class="error-msg"><%= error %></p><% } %>
+  <form method="POST" action="/admin/login" class="contact-form">
+    <label>Username<br><input type="text" name="username" required></label>
+    <label>Password<br><input type="password" name="password" required></label>
+    <button type="submit" class="btn">Log In</button>
+  </form>
+</section>
+
+<%- include('partials_footer') %>

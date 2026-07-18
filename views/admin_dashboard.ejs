@@ -1,0 +1,63 @@
+<%- include('partials_header') %>
+
+<section class="container">
+  <div class="admin-bar">
+    <h1>Admin Dashboard</h1>
+    <a href="/admin/logout" class="btn small">Log Out</a>
+  </div>
+
+  <h2>Add Event</h2>
+  <form method="POST" action="/admin/events" class="contact-form">
+    <label>Title<br><input type="text" name="title" required></label>
+    <label>Date<br><input type="date" name="event_date" required></label>
+    <label>Time (optional)<br><input type="text" name="start_time" placeholder="e.g. 11am - 3pm"></label>
+    <label>Location (optional)<br><input type="text" name="location"></label>
+    <label>Description (optional)<br><textarea name="description" rows="3"></textarea></label>
+    <button type="submit" class="btn">Add Event</button>
+  </form>
+
+  <h2>All Events</h2>
+  <% if (events.length === 0) { %>
+    <p>No events yet.</p>
+  <% } else { %>
+    <table class="admin-table">
+      <thead><tr><th>Title</th><th>Date</th><th>Location</th><th></th></tr></thead>
+      <tbody>
+        <% events.forEach(function(ev) { %>
+          <tr>
+            <td><%= ev.title %></td>
+            <td><%= new Date(ev.event_date).toLocaleDateString('en-US') %></td>
+            <td><%= ev.location || '' %></td>
+            <td>
+              <form method="POST" action="/admin/events/<%= ev.id %>/delete" onsubmit="return confirm('Delete this event?')">
+                <button type="submit" class="btn small danger">Delete</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } %>
+
+  <h2>Recent Contact Submissions</h2>
+  <% if (submissions.length === 0) { %>
+    <p>No submissions yet.</p>
+  <% } else { %>
+    <table class="admin-table">
+      <thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Message</th><th>Date</th></tr></thead>
+      <tbody>
+        <% submissions.forEach(function(s) { %>
+          <tr>
+            <td><%= s.name %></td>
+            <td><%= s.email %></td>
+            <td><%= s.phone || '' %></td>
+            <td><%= s.message %></td>
+            <td><%= new Date(s.created_at).toLocaleDateString('en-US') %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } %>
+</section>
+
+<%- include('partials_footer') %>

@@ -1,0 +1,21 @@
+<%- include('partials_header') %>
+
+<section class="container">
+  <h1>Upcoming Events</h1>
+  <% if (events.length === 0) { %>
+    <p>No events scheduled right now &mdash; check back soon!</p>
+  <% } else { %>
+    <ul class="event-list">
+      <% events.forEach(function(ev) { %>
+        <li class="event-card">
+          <strong><%= ev.title %></strong>
+          <span><%= new Date(ev.event_date).toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }) %><% if (ev.start_time) { %> &middot; <%= ev.start_time %><% } %></span>
+          <% if (ev.location) { %><span><%= ev.location %></span><% } %>
+          <% if (ev.description) { %><p><%= ev.description %></p><% } %>
+        </li>
+      <% }) %>
+    </ul>
+  <% } %>
+</section>
+
+<%- include('partials_footer') %>

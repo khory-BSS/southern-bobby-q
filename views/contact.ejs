@@ -1,0 +1,22 @@
+<%- include('partials_header') %>
+
+<section class="container">
+  <h1>Contact / Catering Request</h1>
+
+  <% if (typeof submitted !== 'undefined' && submitted) { %>
+    <p class="success-msg">Thanks! Your message has been sent. We'll be in touch soon.</p>
+  <% } else { %>
+    <% if (typeof error !== 'undefined' && error) { %>
+      <p class="error-msg"><%= error %></p>
+    <% } %>
+    <form method="POST" action="/contact" class="contact-form">
+      <label>Name<br><input type="text" name="name" required></label>
+      <label>Email<br><input type="email" name="email" required></label>
+      <label>Phone<br><input type="tel" name="phone"></label>
+      <label>Message / Event details<br><textarea name="message" rows="5" required></textarea></label>
+      <button type="submit" class="btn">Send</button>
+    </form>
+  <% } %>
+</section>
+
+<%- include('partials_footer') %>
