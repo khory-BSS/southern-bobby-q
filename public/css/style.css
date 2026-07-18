@@ -148,6 +148,28 @@ h2::after {
 .feature-card h3 { margin: 0 0 0.35rem; font-size: 1.1rem; }
 .feature-card p { margin: 0; font-size: 0.9rem; color: #5c4b3f; }
 
+/* ---------- testimonial ---------- */
+.testimonial {
+  margin: 2.5rem auto;
+  max-width: 42rem;
+  text-align: center;
+  padding: 0 1rem;
+}
+.testimonial p {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 1.4rem;
+  font-style: italic;
+  color: var(--brown);
+  margin: 0 0 0.6rem;
+  line-height: 1.5;
+}
+.testimonial cite {
+  font-style: normal;
+  font-weight: 600;
+  color: var(--smoke);
+  font-size: 0.9rem;
+}
+
 /* ---------- events ---------- */
 .event-list { list-style: none; padding: 0; }
 .event-card {
