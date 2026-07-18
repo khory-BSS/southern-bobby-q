@@ -9,16 +9,43 @@
 </section>
 
 <section class="container">
+  <div class="feature-strip">
+    <div class="feature-card">
+      <span class="feature-icon">🔥</span>
+      <h3>Low &amp; Slow</h3>
+      <p>Smoked overnight for real Southern flavor, every time.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🌶️</span>
+      <h3>House-Made Rubs</h3>
+      <p>Our own blends and sauces &mdash; nothing off the shelf.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🎉</span>
+      <h3>Any Size Event</h3>
+      <p>Weddings, corporate lunches, backyard parties &mdash; we cater it all.</p>
+    </div>
+  </div>
+</section>
+
+<section class="container">
   <h2>Upcoming Events</h2>
   <% if (upcomingEvents.length === 0) { %>
     <p>No events scheduled right now &mdash; check back soon!</p>
   <% } else { %>
     <ul class="event-list">
       <% upcomingEvents.forEach(function(ev) { %>
+        <% const d = new Date(ev.event_date); %>
         <li class="event-card">
-          <strong><%= ev.title %></strong>
-          <span><%= new Date(ev.event_date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) %><% if (ev.start_time) { %> &middot; <%= ev.start_time %><% } %></span>
-          <% if (ev.location) { %><span><%= ev.location %></span><% } %>
+          <div class="date-badge">
+            <span class="day"><%= d.getDate() %></span>
+            <span class="mon"><%= d.toLocaleDateString('en-US', { month: 'short' }) %></span>
+          </div>
+          <div class="event-body">
+            <strong><%= ev.title %></strong>
+            <span><%= d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) %><% if (ev.start_time) { %> &middot; <%= ev.start_time %><% } %></span>
+            <% if (ev.location) { %><span><%= ev.location %></span><% } %>
+          </div>
         </li>
       <% }) %>
     </ul>
